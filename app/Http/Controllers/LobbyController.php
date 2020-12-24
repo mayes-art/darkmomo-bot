@@ -113,17 +113,7 @@ class LobbyController extends Controller
     {
         try {
             $event = $request->all();
-
-            $this->lineBotService->setBot($event);
-            $say = $this->lineBotService->getSay();
-
-            if (Str::contains("{$say}座", Constellation::ALL_TW)) {
-                $say2s = Chinese::simplified($say . "座");
-                dd($say2s);
-                $apiUri = "https://api.5tk.xyz/api/conste.php?msg={$say2s}";
-                $response = Http::get($apiUri);
-                echo Chinese::traditional($response->body());
-            }
+            return response('test');
         } catch (\Exception $e) {
             report($e);
         }

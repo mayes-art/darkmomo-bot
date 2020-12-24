@@ -46,6 +46,10 @@ class LobbyController extends Controller
             Log::info(json_encode($event, JSON_UNESCAPED_UNICODE));
 
             $this->lineBotService->setBot($event);
+            if ('text' !== $this->lineBotService->getReqType()) {
+                return;
+            }
+
             $say = $this->lineBotService->getSay();
 
             if (Str::contains($say, '看韓劇')) {

@@ -94,7 +94,7 @@ class LobbyController extends Controller
 
 
 
-            if (Str::contains($say, 'roll')) {
+            if (Str::contains($say, ['roll', 'Roll', 'ROLL'])) {
                 $message = '(1~100)隨機骰出來的數字為: ' . $this->lineBotService->randomChange();
                 $this->lineBotService->setText($message);
             }

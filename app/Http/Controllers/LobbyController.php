@@ -83,6 +83,16 @@ class LobbyController extends Controller
                 }
             }
 
+            if (Str::contains($say, '抽帥哥')) {
+                $imgurImages = 'https://api.imgur.com/3/album/RBT5Tl8/images';
+                $accessToken = '23a3fc911a3e85e0111de632b42d39e0e6bc1551';
+                $response = Http::withToken($accessToken)->get($imgurImages);
+                if ($response->successful()) {
+                    $image = collect($response->json('data'))->random();
+                    $this->lineBotService->setImage($image['link']);
+                }
+            }
+
             if (Str::contains("{$say}座", Constellation::ALL_TW)) {
                 $say2s = Chinese::simplified($say . "座");
                 $apiUri = "https://api.5tk.xyz/api/conste.php?msg={$say2s}";

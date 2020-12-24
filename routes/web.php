@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('info', function () {
+    phpinfo();
 });
+
+Route::get('/', [LobbyController::class, 'lineGet']);
+Route::post('/', [LobbyController::class, 'test']);
+
+Route::post('test', [LobbyController::class, 'test']);

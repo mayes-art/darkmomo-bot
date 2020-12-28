@@ -8,6 +8,7 @@ use Hanson\Chinese\Chinese;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use LINE\LINEBot;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
@@ -15,6 +16,8 @@ use LINE\LINEBot\MessageBuilder\MultiMessageBuilder;
 
 class LobbyController extends Controller
 {
+
+    const HOME_GROUP_ID = ['C941e3d40dc9046bd0d4308224a086b29'];
 
     protected $bot;
     protected $messageBuilder;
@@ -127,7 +130,12 @@ class LobbyController extends Controller
     {
         try {
             $event = $request->all();
-            return response('test');
+            $this->lineBotService->setBot($event);
+            $say = $this->lineBotService->getSay();
+
+            $data = file_get_contents(storage_path('app/public/pwd_game.json'));
+
+            echo $data;
         } catch (\Exception $e) {
             report($e);
         }

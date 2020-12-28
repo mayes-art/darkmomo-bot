@@ -39,7 +39,7 @@ class LineBotService
         $this->replyToken = $p['replyToken'];
         $this->type = $p['message']['type'];
         $this->userId = $p['source']['userId'];
-        $this->say = $p['message']['text'];
+        $this->say = $p['message']['text'] ?? '';
     }
 
     public function randomChange(): int

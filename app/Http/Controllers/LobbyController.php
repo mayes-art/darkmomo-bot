@@ -102,7 +102,7 @@ class LobbyController extends Controller
 
             if (Str::contains("{$say}座", Constellation::ALL_TW)) {
                 $say2s = Chinese::simplified($say . "座");
-                $apiUri = "https://api.5tk.xyz/api/conste.php?msg={$say2s}";
+                $apiUri = "http://crys.top/api/conste.php?msg={$say2s}";
                 $response = Http::get($apiUri);
                 if ($response->successful()) {
                     $this->lineBotService->setText(Chinese::traditional($response->body()));

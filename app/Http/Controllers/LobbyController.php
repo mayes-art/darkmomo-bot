@@ -101,6 +101,10 @@ class LobbyController extends Controller
             }
 
             if (Str::contains("{$say}座", Constellation::ALL_TW)) {
+                if ('牡羊' == $say) {
+                    $say = '白羊';
+                }
+                
                 $say2s = Chinese::simplified($say . "座");
                 $apiUri = "http://crys.top/api/conste.php?msg={$say2s}";
                 $response = Http::get($apiUri);
